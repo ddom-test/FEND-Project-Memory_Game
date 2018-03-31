@@ -10,11 +10,17 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    * Create a list that holds all of your cards
    */
 
-   const cards = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor",
+   const cardsList = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor",
       "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle",
       "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt",
       "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
+
+   const starsPnl = document.querySelector('.stars');
+   const movesDisplay = document.querySelector('.moves');
+   const restartBtn = document.querySelector('.restart');
+   const deck = document.querySelector('.deck');
+   const cards = document.querySelectorAll('.deck li'); 
 
 
   /*
