@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    * Create a list that holds all of your cards
    */
 
+   const cards = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor",
+      "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle",
+      "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt",
+      "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
 
 
@@ -48,4 +52,4 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
    */
 
-});   
+});
