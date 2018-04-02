@@ -57,7 +57,8 @@ document.addEventListener("DOMContentLoaded", function(ev) {
     // Clean HTML (remove 'i' nodes from the DOM)
     for (let card = 0; card < cards.length; card++) {
 
-      cards[card].firstElementChild.remove()
+      cards[card].setAttribute("data-card-number", card);
+      cards[card].firstElementChild.remove();
     }
   }
 
