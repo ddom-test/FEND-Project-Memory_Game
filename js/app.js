@@ -77,5 +77,18 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    */
 
 
+   // This function add a card to the deck.
+
+   // It uses the cardNumber as an index for 'shuffledCardsList'. Then,
+   // it appends a new html element to the li element (target parameter)
+   // that fired the 'click' event.
+   function addCardHTML(cardNumber, target) {
+
+     let card = document.createElement("i");
+     console.log("shuffledCardsList[cardNumber] >>>", shuffledCardsList[cardNumber]);
+     card.className=shuffledCardsList[cardNumber];
+
+     target.appendChild(card);
+   }
 
 });
