@@ -20,7 +20,10 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    const movesDisplay = document.querySelector('.moves');
    const restartBtn = document.querySelector('.restart');
    const deck = document.querySelector('.deck');
-   const cards = document.querySelectorAll('.deck li'); 
+   const cards = document.querySelectorAll('.deck li');
+
+   let shuffledCardsList = [];   // Holds all of the cards after shuffling
+
 
 
   /*
@@ -46,6 +49,20 @@ document.addEventListener("DOMContentLoaded", function(ev) {
     return array;
   }
 
+  function init() {
+
+    //Shuffling the deck
+    shuffledCardsList = shuffle(cardsList);
+
+    // Clean HTML (remove 'i' nodes from the DOM)
+    for (let card = 0; card < cards.length; card++) {
+
+      cards[card].firstElementChild.remove()
+    }
+  }
+
+  init();
+
 
   /*
    * set up the event listener for a card. If a card is clicked:
@@ -57,5 +74,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
    *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
    */
+
+
 
 });
