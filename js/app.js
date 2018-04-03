@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
    let shuffledCardsList = [];   // Holds all of the cards after shuffling
    let openCards = [];
+   let clickable = true;
 
    // Variables for timer
    let timerIsActive = false;
@@ -84,10 +85,9 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
    */
 
-
    deck.addEventListener('click', function (evt) {
 
-     if (evt.target.className === 'card') {
+     if (evt.target.className === 'card' && clickable) {
 
        startTimer();
        showCard(evt);
@@ -134,6 +134,9 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      const firstCard = 0;
      const secondCard = 1;
 
+     // Avoids variables inconsistency
+     clickable = false;
+
      setTimeout( function () {
 
        openCards[firstCard].className ="card";
@@ -142,7 +145,8 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        firstCardName = openCards[firstCard].firstElementChild.remove();
        firstCardName = openCards[secondCard].firstElementChild.remove();
        openCards = [];
-           
+       clickable = true;
+
      }, 1200);
    }
 
