@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
   init();
 
- 
+
   /*
    * set up the event listener for a card. If a card is clicked:
    *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -92,11 +92,15 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    // Set the timer
    function startTimer() {
 
-     let timerHTML = document.createElement("div");
-     timerHTML.className = "timer";
-     timerHTMLElement = scorePanel.appendChild(timerHTML);
-     timerIsActive = true;
-     timerInterval = setInterval (timer, 1000);
+     if (!timerIsActive) {
+
+       let timerHTML = document.createElement("div");
+       timerHTML.className = "timer";
+       timerHTMLElement = scorePanel.appendChild(timerHTML);
+       timerIsActive = true;
+       timerInterval = setInterval (timer, 1000);
+       timerIsActive = true;
+     }
    }
 
    // Stop the timer
@@ -107,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        clearInterval(timerInterval);
        sec = 0;
        min = 0;
+       timerIsActive = false;
        timerHTMLElement.remove();
      }
 
