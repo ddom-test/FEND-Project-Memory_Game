@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    let shuffledCardsList = [];   // Holds all of the cards after shuffling
    let openCards = [];
    let clickable = true;
+   let moves = 0;
 
    // Variables for timer
    let timerIsActive = false;
@@ -69,6 +70,10 @@ document.addEventListener("DOMContentLoaded", function(ev) {
       cards[card].setAttribute("data-card-number", card);
       cards[card].firstElementChild.remove();
     }
+
+    // Initializes the move counter
+    moves = 0;
+    movesDisplay.innerHTML = moves;
   }
 
   init();
@@ -92,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        startTimer();
        showCard(evt);
        addAndCheck(evt);
+       incrementMoveCounter();
      }
    });   //deck.addEventListener
 
@@ -148,6 +154,12 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        clickable = true;
 
      }, 1200);
+   }
+
+   function incrementMoveCounter() {
+
+     moves++;
+     movesDisplay.innerHTML = moves;
    }
 
 
