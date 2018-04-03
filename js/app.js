@@ -21,9 +21,16 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    const restartBtn = document.querySelector('.restart');
    const deck = document.querySelector('.deck');
    const cards = document.querySelectorAll('.deck li');
+   const scorePanel = document.querySelector('.score-panel');
 
    let shuffledCardsList = [];   // Holds all of the cards after shuffling
 
+   // Variables for timer
+   let timerIsActive = false;
+   let timerInterval;
+   let sec = 0;
+   let min = 0;
+   let timerHTMLElement;
 
 
   /*
@@ -64,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
   init();
 
-
+ 
   /*
    * set up the event listener for a card. If a card is clicked:
    *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -75,6 +82,61 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
    *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
    */
+
+
+
+   /*
+   * Timer functions below
+   */
+
+   // Set the timer
+   function startTimer() {
+
+     let timerHTML = document.createElement("div");
+     timerHTML.className = "timer";
+     timerHTMLElement = scorePanel.appendChild(timerHTML);
+     timerIsActive = true;
+     timerInterval = setInterval (timer, 1000);
+   }
+
+   // Stop the timer
+   function stopTimer() {
+
+     if (timerIsActive) {
+
+       clearInterval(timerInterval);
+       sec = 0;
+       min = 0;
+       timerHTMLElement.remove();
+     }
+
+     // else console.log("Timer is not active. Nothing to stop!");
+   }
+
+   // Game timer
+   function timer() {
+
+     if (timerIsActive) {
+
+       let secString, minString;
+
+       sec++;
+
+       if (sec > 59) {
+         sec = 0;
+         min++;
+       }
+     }
+
+     if (min < 10) minString = "0" +min;
+     else minString = min;
+
+     if (sec < 10) secString = "0" +sec;
+     else secString = sec;
+
+     timerHTMLElement.innerHTML = minString +":" +secString;
+   }
+
 
 
    // This function add a card to the deck.

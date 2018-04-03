@@ -107,3 +107,12 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Styles for the timer
+ */
+
+.timer {
+  float: right;
+  margin-right: 15%;
+}
