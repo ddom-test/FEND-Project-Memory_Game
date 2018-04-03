@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
       "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
 
-   const starsPnl = document.querySelector('.stars');
+   const stars = document.querySelectorAll('.stars li');
    const movesDisplay = document.querySelector('.moves');
    const restartBtn = document.querySelector('.restart');
    const deck = document.querySelector('.deck');
@@ -67,8 +67,13 @@ document.addEventListener("DOMContentLoaded", function(ev) {
     // Clean HTML (remove 'i' nodes from the DOM)
     for (let card = 0; card < cards.length; card++) {
 
-      cards[card].setAttribute("data-card-number", card);
+      cards[card].setAttribute('data-card-number', card);
       cards[card].firstElementChild.remove();
+    }
+
+    for (let star = 0; star < stars.length; star++) {
+
+      stars[star].removeAttribute('class');
     }
 
     // Initializes the move counter
@@ -98,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        showCard(evt);
        addAndCheck(evt);
        incrementMoveCounter();
+       manageStars();
      }
    });   //deck.addEventListener
 
@@ -160,6 +166,17 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
      moves++;
      movesDisplay.innerHTML = moves;
+   }
+
+   function manageStars() {
+
+     const thirdStar = 2;
+     const secondStar = 1;
+     const firstStar = 0;
+
+     if (moves == 15) stars[thirdStar].classList.add('hide');
+     if (moves == 30) stars[secondStar].classList.add('hide');
+     if (moves == 50) stars[firstStar].classList.add('hide');
    }
 
 
