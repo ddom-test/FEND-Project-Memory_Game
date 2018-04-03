@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    const scorePanel = document.querySelector('.score-panel');
 
    let shuffledCardsList = [];   // Holds all of the cards after shuffling
+   let openCards = [];
 
    // Variables for timer
    let timerIsActive = false;
@@ -84,6 +85,67 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    */
 
 
+   deck.addEventListener('click', function (evt) {
+
+     if (evt.target.className === 'card') {
+
+       startTimer();
+       showCard(evt);
+       addAndCheck(evt);
+     }
+   });   //deck.addEventListener
+
+   function showCard(evt) {
+
+     let cardNumber = evt.target.dataset.cardNumber;
+
+     addCardHTML(cardNumber, evt.target);
+     evt.target.classList.toggle("open");
+     evt.target.classList.toggle("show");
+   }
+
+   function addAndCheck(evt) {
+
+     const firstCard = 0;
+     const secondCard = 1;
+     let firstCardName;
+     let secondCardName;
+
+     openCards.push(evt.target);
+
+     if (openCards.length > 1) {
+
+       firstCardName = openCards[firstCard].firstElementChild.className;
+       secondCardName = openCards[secondCard].firstElementChild.className;
+
+       if (firstCardName === secondCardName) {
+
+         openCards[firstCard].className = "card match";
+         openCards[secondCard].className = "card match";
+         openCards = [];
+       }
+
+       else hideCards();
+     }
+   }
+
+   function hideCards() {
+
+     const firstCard = 0;
+     const secondCard = 1;
+
+     setTimeout( function () {
+
+       openCards[firstCard].className ="card";
+       openCards[secondCard].className ="card";
+
+       firstCardName = openCards[firstCard].firstElementChild.remove();
+       firstCardName = openCards[secondCard].firstElementChild.remove();
+       openCards = [];
+           
+     }, 1200);
+   }
+
 
    /*
    * Timer functions below
@@ -97,7 +159,6 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        let timerHTML = document.createElement("div");
        timerHTML.className = "timer";
        timerHTMLElement = scorePanel.appendChild(timerHTML);
-       timerIsActive = true;
        timerInterval = setInterval (timer, 1000);
        timerIsActive = true;
      }
@@ -152,9 +213,8 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    function addCardHTML(cardNumber, target) {
 
      let card = document.createElement("i");
-     console.log("shuffledCardsList[cardNumber] >>>", shuffledCardsList[cardNumber]);
-     card.className=shuffledCardsList[cardNumber];
 
+     card.className=shuffledCardsList[cardNumber];
      target.appendChild(card);
    }
 
