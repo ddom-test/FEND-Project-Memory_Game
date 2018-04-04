@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    const cards = document.querySelectorAll('.deck li');
    const scorePanel = document.querySelector('.score-panel');
    const congrModal = document.querySelector('.congr-modal');
+   const instructions = document.querySelector('.container p');
 
    let shuffledCardsList = [];   // Holds all of the cards after shuffling
    let openCards = [];
@@ -103,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
      if (evt.target.className === 'card' && clickable) {
 
+       hideInstr();
        startTimer();
        showCard(evt);
        addAndCheck(evt);
@@ -119,6 +121,16 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      addCardHTML(cardNumber, evt.target);
      evt.target.classList.toggle("open");
      evt.target.classList.toggle("show");
+   }
+
+   function hideInstr() {
+
+     instructions.innerHTML = "";
+   }
+
+   function showInstr() {
+
+     instructions.innerHTML = "Click on a card to start the game!";
    }
 
    function addAndCheck(evt) {
