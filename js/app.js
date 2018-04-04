@@ -22,11 +22,13 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    const deck = document.querySelector('.deck');
    const cards = document.querySelectorAll('.deck li');
    const scorePanel = document.querySelector('.score-panel');
+   const congrModal = document.querySelector('.congr-modal');
 
    let shuffledCardsList = [];   // Holds all of the cards after shuffling
    let openCards = [];
    let clickable = true;
    let moves = 0;
+   let matchedCards = 0;
 
    // Variables for timer
    let timerIsActive = false;
@@ -60,6 +62,8 @@ document.addEventListener("DOMContentLoaded", function(ev) {
   }
 
   function init() {
+
+    matchedCards = 0;
 
     //Shuffling the deck
     shuffledCardsList = shuffle(cardsList);
@@ -104,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        addAndCheck(evt);
        incrementMoveCounter();
        manageStars();
+       checkGameOver();
      }
    });   //deck.addEventListener
 
@@ -134,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
          openCards[firstCard].className = "card match";
          openCards[secondCard].className = "card match";
+         matchedCards++;
          openCards = [];
        }
 
@@ -177,6 +183,13 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      if (moves == 15) stars[thirdStar].classList.add('hide');
      if (moves == 30) stars[secondStar].classList.add('hide');
      if (moves == 50) stars[firstStar].classList.add('hide');
+   }
+
+   function checkGameOver() {
+
+     if (matchedCards == 8) {
+       congrModal.classList.toggle('show');
+     }
    }
 
 
