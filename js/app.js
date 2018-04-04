@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
   function init() {
 
     matchedCards = 0;
+    openCards = [];
 
     //Shuffling the deck
     shuffledCardsList = shuffle(cardsList);
@@ -73,7 +74,9 @@ document.addEventListener("DOMContentLoaded", function(ev) {
     for (let card = 0; card < cards.length; card++) {
 
       cards[card].setAttribute('data-card-number', card);
-      cards[card].firstElementChild.remove();
+      cards[card].className = 'card';
+
+      if (cards[card].firstElementChild) cards[card].firstElementChild.remove();
     }
 
     for (let star = 0; star < stars.length; star++) {
