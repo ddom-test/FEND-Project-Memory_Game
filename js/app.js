@@ -209,6 +209,22 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
 
    /*
+   * Event listener and functions for the restart button (the one on
+   * the score panel)
+   */
+
+   restartBtn.addEventListener('click', function (evt) {
+
+     if(clickable) {
+
+       stopTimer();
+       init();
+       showInstr();
+     }
+   });   // restartBtn.addEventListener
+
+
+   /*
    * Timer functions below
    */
 
