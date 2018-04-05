@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    const stars = document.querySelectorAll('.stars li');
    const movesDisplay = document.querySelector('.moves');
    const restartBtn = document.querySelector('.restart');
+   const congrModalRestartBtn = document.querySelector('.congr-modal-footer .restart');
    const deck = document.querySelector('.deck');
    const cards = document.querySelectorAll('.deck li');
    const scorePanel = document.querySelector('.score-panel');
@@ -222,6 +223,20 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        showInstr();
      }
    });   // restartBtn.addEventListener
+
+
+   /*
+   * Event listener and functions for the restart button (the one on
+   * the congratulations modal)
+   */
+
+   congrModalRestartBtn.addEventListener('click', function (evt) {
+
+     congrModal.classList.toggle('show');
+     stopTimer();
+     init();
+     showInstr();
+   });   // congrModalRestartBtn.addEventListener
 
 
    /*
