@@ -25,12 +25,16 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    const scorePanel = document.querySelector('.score-panel');
    const congrModal = document.querySelector('.congr-modal');
    const instructions = document.querySelector('.container p');
+   const modal_time = document.querySelector('.congr-score-time');
+   const modal_moves = document.querySelector('.congr-score-moves');
+   const modal_stars = document.querySelector('.congr-score-stars');
 
    let shuffledCardsList = [];   // Holds all of the cards after shuffling
    let openCards = [];
    let clickable = true;
    let moves = 0;
    let matchedCards = 0;
+   let starCounter = 3;
 
    // Variables for timer
    let timerIsActive = false;
@@ -196,14 +200,32 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      const secondStar = 1;
      const firstStar = 0;
 
-     if (moves == 15) stars[thirdStar].classList.add('hide');
-     if (moves == 30) stars[secondStar].classList.add('hide');
-     if (moves == 50) stars[firstStar].classList.add('hide');
+     if (moves == 15) {
+       stars[thirdStar].classList.add('hide');
+       starCounter--;
+     }
+
+     if (moves == 30) {
+       stars[secondStar].classList.add('hide');
+       starCounter--;
+     }
+
+     if (moves == 50) {
+       stars[firstStar].classList.add('hide');
+       starCounter--;
+     }
    }
 
    function checkGameOver() {
 
-     if (matchedCards == 8) {
+     if (matchedCards == 0) {
+
+       let time = stopTimer();
+
+       modal_time.innerHTML += " " +time;
+       modal_moves.innerHTML += " " +moves;
+       modal_stars.innerHTML += " " +starCounter;
+
        congrModal.classList.toggle('show');
      }
    }
@@ -261,11 +283,15 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
      if (timerIsActive) {
 
+       let elapsed = timerHTMLElement.innerHTML;
+
        clearInterval(timerInterval);
        sec = 0;
        min = 0;
        timerIsActive = false;
        timerHTMLElement.remove();
+       
+       return elapsed;
      }
 
      // else console.log("Timer is not active. Nothing to stop!");
