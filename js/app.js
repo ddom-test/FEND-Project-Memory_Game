@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
    function checkGameOver() {
 
-     if (matchedCards == 0) {
+     if (matchedCards == 8) {
 
        let time = stopTimer();
 
@@ -290,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        min = 0;
        timerIsActive = false;
        timerHTMLElement.remove();
-       
+
        return elapsed;
      }
 
