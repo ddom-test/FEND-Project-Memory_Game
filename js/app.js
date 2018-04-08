@@ -236,7 +236,9 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    * the score panel)
    */
 
-   restartBtn.addEventListener('click', function (evt) {
+   restartBtn.addEventListener('click', restartGameScorePanel);
+
+   function restartGameScorePanel () {
 
      if(clickable) {
 
@@ -244,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        init();
        showInstr();
      }
-   });   // restartBtn.addEventListener
+   }
 
 
    /*
@@ -252,13 +254,18 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    * the congratulations modal)
    */
 
-   congrModalRestartBtn.addEventListener('click', function (evt) {
+   congrModalRestartBtn.addEventListener('click', function () {
+
+     restartGameCongrPanel();
+   });   // congrModalRestartBtn.addEventListener
+
+   function restartGameCongrPanel() {
 
      congrModal.classList.toggle('show');
      stopTimer();
      init();
      showInstr();
-   });   // congrModalRestartBtn.addEventListener
+   }
 
 
    /*
@@ -321,6 +328,25 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      timerHTMLElement.innerHTML = minString +":" +secString;
    }
 
+   /*
+   * Shortcuts code
+   */
+
+   document.addEventListener('keypress', function (evt) {
+
+     if (evt.key === 'r' && !congrModal.classList.contains('show')) {
+       evt.preventDefault();
+       restartGameScorePanel();
+     }
+   });
+
+   document.addEventListener('keypress', function (evt) {
+
+     if (evt.key === 'r' && congrModal.classList.contains('show')) {
+       evt.preventDefault();
+       restartGameCongrPanel();
+     }
+   });   
 
 
    // This function add a card to the deck.
