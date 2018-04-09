@@ -374,6 +374,24 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      }
    });
 
+   /*
+   * The player can flip the cards over by pressing the keys from 'a' to 'k'
+   * and from 'z' to ',' on the keyboard.
+   */
+   document.addEventListener('keypress', function (evt) {
+
+     const keys = [97, 115, 100, 102, 103, 104, 106, 107, 122, 120, 99, 118, 98, 110, 109, 44];
+     let index;
+
+     if (keys.includes(evt.keyCode)) {
+
+       index = keys.indexOf(evt.keyCode);
+       cards[index].click();
+     }
+
+     else console.log("Not assigned key");
+   });
+
 
    // This function adds a card to the deck.
 
