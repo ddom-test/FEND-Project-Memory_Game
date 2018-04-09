@@ -1,8 +1,8 @@
 /*
- * This function run when the initial HTML document has been completely loaded
-   and parsed, without waiting for stylesheets, images, and subframes
-   to finish loading.
-*/
+ * This function runs when the initial HTML document has been completely loaded
+ * and parsed, without waiting for stylesheets, images, and subframes
+ * to finish loading.
+ */
 
 document.addEventListener("DOMContentLoaded", function(ev) {
 
@@ -30,11 +30,11 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    const modal_stars = document.querySelector('.congr-score-stars');
 
    let shuffledCardsList = [];   // Holds all of the cards after shuffling
-   let openCards = [];
+   let openCards = [];   // "Open" cards list
    let clickable = true;
-   let moves = 0;
-   let matchedCards = 0;
-   let starCounter = 3;
+   let moves = 0;   // Moves counter
+   let matchedCards = 0;   // Matched cards (16 cards in the deck -> maximum is 8)
+   let starCounter = 3;   // Initial stars number
 
    // Variables for timer
    let timerIsActive = false;
@@ -67,17 +67,24 @@ document.addEventListener("DOMContentLoaded", function(ev) {
     return array;
   }
 
+
+  /*
+  * First function to be executed: initializes the game variables
+  */
+
   function init() {
 
-    matchedCards = 0;
+    matchedCards = 0;   // Still no matched cards!
     openCards = [];
 
     //Shuffling the deck
     shuffledCardsList = shuffle(cardsList);
 
-    // Clean HTML (remove 'i' nodes from the DOM)
+    // Removing 'i' nodes from the DOM (hiding the deck's configuration
+    // to the 'shrewd' player!)
     for (let card = 0; card < cards.length; card++) {
 
+      // Now a number identifies the card ('data-card-number')
       cards[card].setAttribute('data-card-number', card);
       cards[card].className = 'card';
 
@@ -89,9 +96,9 @@ document.addEventListener("DOMContentLoaded", function(ev) {
       stars[star].removeAttribute('class');
     }
 
-    // Initializes the move counter
+    // Initializes the moves counter
     moves = 0;
-    movesDisplay.innerHTML = moves;
+    movesDisplay.innerHTML = moves;   // Initializes the moves display
   }
 
   init();
@@ -112,21 +119,21 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
      if (evt.target.className === 'card' && clickable) {
 
-       hideInstr();
-       startTimer();
-       showCard(evt);
-       addAndCheck(evt);
-       incrementMoveCounter();
-       manageStars();
-       checkGameOver();
+       hideInstr();   // Hides the instructions
+       startTimer();   // Starts the timer
+       showCard(evt);   // Shows clicked card
+       addAndCheck(evt);   // Adds the card to the 'open' list and checks if matches
+       incrementMoveCounter();   // Increments the moves counter
+       manageStars();   // Manages the stars display
+       checkGameOver();   // If all cards have matched displays a congr modal
      }
    });   //deck.addEventListener
 
    function showCard(evt) {
 
-     let cardNumber = evt.target.dataset.cardNumber;
+     let cardNumber = evt.target.dataset.cardNumber; // Retrieves the clicked card number
 
-     addCardHTML(cardNumber, evt.target);
+     addCardHTML(cardNumber, evt.target);   // Adds the clicked card to the DOM
      evt.target.classList.toggle("open");
      evt.target.classList.toggle("show");
    }
@@ -141,6 +148,14 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      instructions.innerHTML = "Click on a card to start the game!";
    }
 
+   /*
+    * Adds the card to a *list* of "open" cards.
+    * If the list already has another card, checks to see if the two cards match.
+    * If the cards do match, locks the cards in the open position.
+    * If the cards do not match, removes the cards from the list and hides the card's symbol.
+    * Finally, increments the move counter.
+    */
+
    function addAndCheck(evt) {
 
      const firstCard = 0;
@@ -148,9 +163,9 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      let firstCardName;
      let secondCardName;
 
-     openCards.push(evt.target);
+     openCards.push(evt.target);   // Note: the 'open' list contains a maximum of two cards
 
-     if (openCards.length > 1) {
+     if (openCards.length > 1) {   // If the list contains a card, checks if they match
 
        firstCardName = openCards[firstCard].firstElementChild.className;
        secondCardName = openCards[secondCard].firstElementChild.className;
@@ -159,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
          openCards[firstCard].className = "card match";
          openCards[secondCard].className = "card match";
-         matchedCards++;
+         matchedCards++;   // Incrementing the number of matched cards
          openCards = [];
        }
 
@@ -183,11 +198,12 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        firstCardName = openCards[firstCard].firstElementChild.remove();
        firstCardName = openCards[secondCard].firstElementChild.remove();
        openCards = [];
-       clickable = true;
+       clickable = true; // After the animation ends, the game can continue
 
      }, 1200);
    }
 
+   // Increments the moves counter and updates it
    function incrementMoveCounter() {
 
      moves++;
@@ -216,6 +232,11 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      }
    }
 
+   /*
+    * If all cards have matched, stops the timer and displays a message with the
+    * final score.
+    */
+
    function checkGameOver() {
 
      if (matchedCards == 8) {
@@ -238,13 +259,14 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
    restartBtn.addEventListener('click', restartGameScorePanel);
 
+   // Manages the restart of the game
    function restartGameScorePanel () {
 
      if(clickable) {
 
-       stopTimer();
-       init();
-       showInstr();
+       stopTimer();   // Stops the timer
+       init();   // Initializes the game
+       showInstr();   // Shows instructions
      }
    }
 
@@ -259,9 +281,11 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      restartGameCongrPanel();
    });   // congrModalRestartBtn.addEventListener
 
+
+   // Manages the restart of the game from the congratulations modal
    function restartGameCongrPanel() {
 
-     congrModal.classList.toggle('show');
+     congrModal.classList.toggle('show');   // Hides the modal
      stopTimer();
      init();
      showInstr();
@@ -272,7 +296,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    * Timer functions below
    */
 
-   // Set the timer
+   // Sets the timer
    function startTimer() {
 
      if (!timerIsActive) {
@@ -285,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      }
    }
 
-   // Stop the timer
+   // Stops the timer
    function stopTimer() {
 
      if (timerIsActive) {
@@ -328,10 +352,12 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      timerHTMLElement.innerHTML = minString +":" +secString;
    }
 
+
    /*
    * Shortcuts code
    */
 
+   // Restarts the game when the player presses the 'r' key on the keyboard
    document.addEventListener('keypress', function (evt) {
 
      if (evt.key === 'r' && !congrModal.classList.contains('show')) {
@@ -346,10 +372,10 @@ document.addEventListener("DOMContentLoaded", function(ev) {
        evt.preventDefault();
        restartGameCongrPanel();
      }
-   });   
+   });
 
 
-   // This function add a card to the deck.
+   // This function adds a card to the deck.
 
    // It uses the cardNumber as an index for 'shuffledCardsList'. Then,
    // it appends a new html element to the li element (target parameter)
@@ -362,4 +388,4 @@ document.addEventListener("DOMContentLoaded", function(ev) {
      target.appendChild(card);
    }
 
-});
+});   // document.addEventListener("DOMContentLoaded", function(ev) {

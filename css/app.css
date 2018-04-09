@@ -152,7 +152,6 @@ h1 {
     position: relative;
     background-color: #fefefe;   /* Light grey */
     margin: auto;
-    /*width: 80%; =====================*/
     max-width: 80%;
     -webkit-animation-name: animatetop;   /* Safari & Chrome */
     -webkit-animation-duration: 0.5s;   /* Safari & Chrome */
@@ -184,7 +183,6 @@ h1 {
  }
 
  .congr-modal-header {
-
     background-color: #3367D6;
     color: white;
  }
@@ -236,7 +234,7 @@ h1 {
     padding-left: 5px;
  }
 
- /* Add responsive layout for congr modal */
+ /* Responsive styles for the congratulations modal */
 
  @media screen and (max-width: 600px) {
 
@@ -300,133 +298,133 @@ h1 {
     }
  }
 
-  /* Add responsive layout for the deck */
+ /* Responsive styles for the deck */
 
-  @media screen and (max-width: 740px) {
+ @media screen and (max-width: 740px) {
 
-     .deck {
-       width: 600px;
-       min-height: 620px;
-       font-size: 0;
-     }
-  }
+    .deck {
+      width: 600px;
+      min-height: 620px;
+      font-size: 0;
+    }
+ }
 
-  @media screen and (max-width: 660px) {
+ @media screen and (max-width: 660px) {
 
-     .deck {
-       width: 550px;
-       min-height: 570px;
-       font-size: 0;
-     }
+    .deck {
+      width: 550px;
+      min-height: 570px;
+      font-size: 0;
+    }
 
-     .deck .card {
-       height: 100px;
-       width: 100px;
-     }
-  }
+    .deck .card {
+      height: 100px;
+      width: 100px;
+    }
+ }
 
-  @media screen and (max-width: 620px) {
+ @media screen and (max-width: 620px) {
 
-     .deck {
-       width: 480px;
-       min-height: 500px;
-       font-size: 0;
-     }
+    .deck {
+      width: 480px;
+      min-height: 500px;
+      font-size: 0;
+    }
 
-     .deck .card {
-       height: 90px;
-       width: 90px;
-     }
-  }
+    .deck .card {
+      height: 90px;
+      width: 90px;
+    }
+ }
 
-  @media screen and (max-width: 550px) {
+ @media screen and (max-width: 550px) {
 
-     .deck {
-       width: 400px;
-       min-height: 420px;
-       font-size: 0;
-     }
+    .deck {
+      width: 400px;
+      min-height: 420px;
+      font-size: 0;
+    }
 
-     .deck .card {
-       height: 70px;
-       width: 70px;
-     }
-  }
+    .deck .card {
+      height: 70px;
+      width: 70px;
+    }
+ }
 
-  @media screen and (max-width: 450px) {
+ @media screen and (max-width: 450px) {
 
-     .deck {
-       width: 300px;
-       min-height: 320px;
-       font-size: 0;
-     }
+    .deck {
+      width: 300px;
+      min-height: 320px;
+      font-size: 0;
+    }
 
-     .deck .card {
-       height: 50px;
-       width: 50px;
-     }
+    .deck .card {
+      height: 50px;
+      width: 50px;
+    }
 
-     .score-panel {
-       width: 50%;
-     }
+    .score-panel {
+      width: 50%;
+    }
 
-     .timer {
-       padding-top: 5%;
-       float: none;
-       width: 100%;
-       text-align: center;
-     }
-  }
+    .timer {
+      padding-top: 5%;
+      float: none;
+      width: 100%;
+      text-align: center;
+    }
+ }
 
-  @media screen and (max-width: 360px) {
+ @media screen and (max-width: 360px) {
 
-     .deck {
-       width: 220px;
-       min-height: 240px;
-       font-size: 0;
-     }
+    .deck {
+      width: 220px;
+      min-height: 240px;
+      font-size: 0;
+    }
 
-     .deck .card {
-       height: 32px;
-       width: 32px;
-     }
+    .deck .card {
+      height: 32px;
+      width: 32px;
+    }
 
-     .score-panel {
-       width: 50%;
-     }
+    .score-panel {
+      width: 50%;
+    }
 
-     .score-panel .restart {
-       width: 100%;
-       float: none;
-       padding-top: 5%;
-       text-align: center;
-     }
+    .score-panel .restart {
+      width: 100%;
+      float: none;
+      padding-top: 5%;
+      text-align: center;
+    }
 
-     .timer {
-       padding-top: 5%;
-       float: none;
-       width: 100%;
-       text-align: center;
-     }
+    .timer {
+      padding-top: 5%;
+      float: none;
+      width: 100%;
+      text-align: center;
+    }
 
-     .fa {
-       font-size: 20px;
-     }
-  }
+    .fa {
+      font-size: 20px;
+    }
+ }
 
-  @media screen and (max-width: 275px) {
+ @media screen and (max-width: 275px) {
 
-     header h1 {
-       text-align: center;
-       font-size: 25px;
-     }
+    header h1 {
+      text-align: center;
+      font-size: 25px;
+    }
 
-     header p {
-       text-align: center;
-       font-size: 15px;
-     }
+    header p {
+      text-align: center;
+      font-size: 15px;
+    }
 
-     .score-panel .restart {
-       padding-top: 20%;
-     }
-  }
+    .score-panel .restart {
+      padding-top: 20%;
+    }
+ }
