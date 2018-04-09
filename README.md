@@ -23,9 +23,12 @@ The gameplay rules are very simple: flip over two hidden cards at a time to loca
 * If the cards match, both cards stay flipped over.
 * If the cards do not match, both cards are flipped face down.
 
-The game ends once all cards have been correctly matched.
+The game ends once all cards have been correctly matched. <br/>
 
-The player can restart the game hitting the 'r' key on the keyboard or clicking on the restart button as well.
+Shortcuts:
+
+* The player can restart the game hitting the 'r' key on the keyboard or clicking on the restart button as well.
+* The user can flip the cards over by pressing keys from 'a' to 'k' and from 'z' to ',' on the keyboard.
 
 ## Score
 
