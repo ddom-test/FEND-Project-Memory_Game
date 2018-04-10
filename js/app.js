@@ -214,20 +214,14 @@ document.addEventListener("DOMContentLoaded", function(ev) {
 
      const thirdStar = 2;
      const secondStar = 1;
-     const firstStar = 0;
 
-     if (moves == 15) {
+     if (moves == 20) {
        stars[thirdStar].classList.add('hide');
        starCounter--;
      }
 
-     if (moves == 30) {
+     if (moves == 35) {
        stars[secondStar].classList.add('hide');
-       starCounter--;
-     }
-
-     if (moves == 50) {
-       stars[firstStar].classList.add('hide');
        starCounter--;
      }
    }
