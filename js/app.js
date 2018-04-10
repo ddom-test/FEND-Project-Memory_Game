@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    let openCards = [];   // "Open" cards list
    let clickable = true;
    let moves = 0;   // Moves counter
+   let moves_incrementOrNot = false;
    let matchedCards = 0;   // Matched cards (16 cards in the deck -> maximum is 8)
    let starCounter = 3;   // Initial stars number
 
@@ -97,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function(ev) {
     }
 
     // Initializes the moves counter
+    moves_incrementOrNot = false;   // Not strictly necessary!
     moves = 0;
     movesDisplay.innerHTML = moves;   // Initializes the moves display
   }
@@ -156,31 +158,32 @@ document.addEventListener("DOMContentLoaded", function(ev) {
     * Finally, increments the move counter.
     */
 
-   function addAndCheck(evt) {
+    function addAndCheck(evt) {
 
-     const firstCard = 0;
-     const secondCard = 1;
-     let firstCardName;
-     let secondCardName;
+      const firstCard = 0;
+      const secondCard = 1;
+      let firstCardName;
+      let secondCardName;
 
-     openCards.push(evt.target);   // Note: the 'open' list contains a maximum of two cards
+      openCards.push(evt.target);   // Note: the 'open' list contains a maximum of two cards
 
-     if (openCards.length > 1) {   // If the list contains a card, checks if they match
+      if (openCards.length > 1) {   // If the list contains a card, checks if they match
 
-       firstCardName = openCards[firstCard].firstElementChild.className;
-       secondCardName = openCards[secondCard].firstElementChild.className;
+        firstCardName = openCards[firstCard].firstElementChild.className;
+        secondCardName = openCards[secondCard].firstElementChild.className;
+        moves_incrementOrNot = true;
 
-       if (firstCardName === secondCardName) {
+        if (firstCardName === secondCardName) {
 
-         openCards[firstCard].className = "card match";
-         openCards[secondCard].className = "card match";
-         matchedCards++;   // Incrementing the number of matched cards
-         openCards = [];
-       }
+          openCards[firstCard].className = "card match";
+          openCards[secondCard].className = "card match";
+          matchedCards++;   // Incrementing the number of matched cards
+          openCards = [];
+        }
 
-       else hideCards();
-     }
-   }
+        else hideCards();
+      }
+    }
 
    function hideCards() {
 
@@ -204,10 +207,18 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    }
 
    // Increments the moves counter and updates it
+   // Notice that the number of moves will be incremented when
+   // 2 cards are clicked
    function incrementMoveCounter() {
 
-     moves++;
-     movesDisplay.innerHTML = moves;
+     // Moves counter will be incremented only if two cards are clicked
+     if (moves_incrementOrNot) {
+
+       moves++;
+       movesDisplay.innerHTML = moves;
+     }
+
+     moves_incrementOrNot = false;
    }
 
    function manageStars() {
