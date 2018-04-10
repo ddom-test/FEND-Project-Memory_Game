@@ -158,53 +158,53 @@ document.addEventListener("DOMContentLoaded", function(ev) {
     * Finally, increments the move counter.
     */
 
-    function addAndCheck(evt) {
+   function addAndCheck(evt) {
 
-      const firstCard = 0;
-      const secondCard = 1;
-      let firstCardName;
-      let secondCardName;
+     const firstCard = 0;
+     const secondCard = 1;
+     let firstCardName;
+     let secondCardName;
 
-      openCards.push(evt.target);   // Note: the 'open' list contains a maximum of two cards
+     openCards.push(evt.target);   // Note: the 'open' list contains a maximum of two cards
 
-      if (openCards.length > 1) {   // If the list contains a card, checks if they match
+     if (openCards.length > 1) {   // If the list contains a card, checks if they match
 
-        firstCardName = openCards[firstCard].firstElementChild.className;
-        secondCardName = openCards[secondCard].firstElementChild.className;
-        moves_incrementOrNot = true;
+       firstCardName = openCards[firstCard].firstElementChild.className;
+       secondCardName = openCards[secondCard].firstElementChild.className;
+       moves_incrementOrNot = true;
 
-        if (firstCardName === secondCardName) {
+       if (firstCardName === secondCardName) {
 
-          openCards[firstCard].className = "card match";
-          openCards[secondCard].className = "card match";
-          matchedCards++;   // Incrementing the number of matched cards
-          openCards = [];
-        }
+         openCards[firstCard].className = "card match";
+         openCards[secondCard].className = "card match";
+         matchedCards++;   // Incrementing the number of matched cards
+         openCards = [];
+       }
 
-        else hideCards();
-      }
-    }
+       else hideCards();
+     }
+   }
 
-    function hideCards() {
+   function hideCards() {
 
-      const firstCard = 0;
-      const secondCard = 1;
+     const firstCard = 0;
+     const secondCard = 1;
 
-      // Avoids variables inconsistency
-      clickable = false;
+     // Avoids variables inconsistency
+     clickable = false;
 
-      setTimeout( function () {
+     setTimeout( function () {
 
-        openCards[firstCard].className ="card";
-        openCards[secondCard].className ="card";
+       openCards[firstCard].className ="card";
+       openCards[secondCard].className ="card";
 
-        openCards[firstCard].firstElementChild.remove();
-        openCards[secondCard].firstElementChild.remove();
-        openCards = [];
-        clickable = true; // After the animation ends, the game can continue
+       openCards[firstCard].firstElementChild.remove();
+       openCards[secondCard].firstElementChild.remove();
+       openCards = [];
+       clickable = true; // After the animation ends, the game can continue
 
-      }, 1200);
-    }
+     }, 1200);
+   }
 
    // Increments the moves counter and updates it
    // Notice that the number of moves will be incremented when
