@@ -185,26 +185,26 @@ document.addEventListener("DOMContentLoaded", function(ev) {
       }
     }
 
-   function hideCards() {
+    function hideCards() {
 
-     const firstCard = 0;
-     const secondCard = 1;
+      const firstCard = 0;
+      const secondCard = 1;
 
-     // Avoids variables inconsistency
-     clickable = false;
+      // Avoids variables inconsistency
+      clickable = false;
 
-     setTimeout( function () {
+      setTimeout( function () {
 
-       openCards[firstCard].className ="card";
-       openCards[secondCard].className ="card";
+        openCards[firstCard].className ="card";
+        openCards[secondCard].className ="card";
 
-       firstCardName = openCards[firstCard].firstElementChild.remove();
-       firstCardName = openCards[secondCard].firstElementChild.remove();
-       openCards = [];
-       clickable = true; // After the animation ends, the game can continue
+        openCards[firstCard].firstElementChild.remove();
+        openCards[secondCard].firstElementChild.remove();
+        openCards = [];
+        clickable = true; // After the animation ends, the game can continue
 
-     }, 1200);
-   }
+      }, 1200);
+    }
 
    // Increments the moves counter and updates it
    // Notice that the number of moves will be incremented when
@@ -336,9 +336,10 @@ document.addEventListener("DOMContentLoaded", function(ev) {
    // Game timer
    function timer() {
 
-     if (timerIsActive) {
+     let secString = "";
+     let minString = "";
 
-       let secString, minString;
+     if (timerIsActive) {
 
        sec++;
 
