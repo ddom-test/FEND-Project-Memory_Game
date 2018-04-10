@@ -34,9 +34,9 @@ Shortcuts:
 
 The game displays a star rating (from 1-3) that reflects the player's performance. Amount of stars depends from moves:
 
-* 3 stars: less than 15 moves
-* 2 stars: until 30 moves
-* 1 star: between 30 and 50 moves
+* 3 stars: less than 20 moves
+* 2 stars: until 35 moves
+* 1 star: more than 35 moves
 
 When the player starts a game, a displayed timer will also start.
 
